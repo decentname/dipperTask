@@ -7,16 +7,19 @@ var app = express();
 app.get('/api/serverStatus', function(req, res) {
 	var result = {}
 	client.keys('*',function(err,resp){
-		resp.forEach(function(val,index){
-			console.log(val);
-			client.ttl(val,function(err,rep){
-				console.log(rep);
-				result[val] = rep;	
-			});	
-		})
-		res.send(result);
+
+		for(let i=0;i<resp.length;i++){
+			client.ttl(resp[i],function(err,rep){
+				result[resp[i]] = rep;
+				if(i == resp.length-1)
+				{
+					res.send(result);
+				}
+			})
+		}
 	});
 });
+
 
 app.get('/api/request', function(req, res) {
     var connId = req.query.connId;

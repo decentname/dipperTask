@@ -10,8 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.2",
+    "fibers": "^1.0.15",
     "node-step": "0.0.2",
     "nodemon": "^1.11.0",
-    "redis": "^2.7.1"
+    "redis": "^2.7.1",
+    "sequence": "^3.0.0"
   }
 }
